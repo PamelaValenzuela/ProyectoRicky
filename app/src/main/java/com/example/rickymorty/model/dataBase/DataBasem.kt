@@ -1,36 +1,37 @@
 package com.example.rickymorty.model.dataBase
 
 import android.content.Context
+import androidx.room.Database
 import androidx.room.Room
-import com.example.rickymorty.model.dataClass.RickandMorty
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.example.rickymorty.model.dataClass.*
 
-@DataBase(entities = [(RickandMorty::class)], version = 1)
-abstract DataBasem : RoomDataBase {
-    abstract fun getDataModelHeroesDao():Dao
+@Database(entities = [Results::class], version = 1)
+@TypeConverters( OriginCoverter::class,
+    LocationConverter::class,
+    EpisodeConverter::class,
+    StringListConverter::class
+)
+abstract class DataBasem : RoomDatabase() {
 
+    abstract fun daoPersonajes():Dao
+companion object{
+    @Volatile
+    private var INSTANCE: DataBasem?=null
 
-
-    //Esta linea de codigo indica que es und metodo estatico que se realiza sólo una vez
-    companion object{
-
-        //no entiendo por que se debe ocupar volatile
-        @Volatile
-        private var INSTANCE: DataBasem?= null
-        fun getDBPersonajes(context: Context):DataBasem{
-            val createdInstance= INSTANCE
-            if (createdInstance!=null){
-                return createdInstance
-            }
-            synchronized(this){
-                val newInstance= Room.databaseBuilder(context.applicationContext, DataBasem::class.java, "heroes_db")
-                    //se necesita cuando se realizan cambios a la database
-                    .fallbackToDestructiveMigrationFrom(1,2,3,4,5,6,7)
-                    .build()
-                INSTANCE= newInstance
-                return newInstance
-            }
-
+    fun getDataBasem(context : Context):DataBasem{
+        val createdInstance = INSTANCE
+        if(createdInstance!=null){
+            return createdInstance
         }
-
+        synchronized(this){
+            val newInstance = Room.databaseBuilder(context.applicationContext,DataBasem::class.java,"movies_db")
+                .fallbackToDestructiveMigrationFrom(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26).build()
+            INSTANCE=newInstance
+            return newInstance
+        }
     }
-}
+
+}}
+

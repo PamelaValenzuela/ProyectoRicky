@@ -1,0 +1,50 @@
+package com.example.rickymorty.view
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.rickymorty.R
+import com.example.rickymorty.model.dataClass.Results
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.holderimage.view.*
+
+
+class CharacterAdapter(var mAdapterCharacter: MutableList<Results>,var pAdapCharacter: pAdapter): RecyclerView.Adapter<CharacterAdapter.ViewHolderCharacter>() {
+
+   fun updateData(mCharacter:MutableList<Results>?){
+        if (mCharacter != null) {
+            mAdapterCharacter= mCharacter
+        }
+        notifyDataSetChanged()
+    }
+
+  inner class ViewHolderCharacter(itemView: View): RecyclerView.ViewHolder(itemView){
+
+        fun mbind(result:Results?) {
+            Picasso.get().load(result?.image?.get(0)).placeholder(R.drawable.ic_launcher_foreground).into(itemView.imageCharacter)
+            itemView.charactername.text=result?.name
+        }
+
+
+  }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCharacter {
+        return ViewHolderCharacter(LayoutInflater.from(parent.context).inflate(R.layout.fragment_fragmentimage,parent,false))
+    }
+
+    override fun onBindViewHolder(holder: ViewHolderCharacter, position: Int) {
+        holder.mbind(mAdapterCharacter[position])
+    }
+
+    override fun getItemCount(): Int {
+     return mAdapterCharacter.size
+    }
+    interface pAdapter{
+        fun id(id:Int)
+
+    }
+
+
+}
