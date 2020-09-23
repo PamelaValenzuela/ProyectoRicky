@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.example.rickymorty.model.dataClass.Results
+import com.example.rickymorty.model.dataClass.RickandMorty
 import com.example.rickymorty.model.repository.RepositoryRick
 
 class ViewModelRick(application: Application): AndroidViewModel(application) {

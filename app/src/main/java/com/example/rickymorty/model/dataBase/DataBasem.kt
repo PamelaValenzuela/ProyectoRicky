@@ -8,11 +8,7 @@ import androidx.room.TypeConverters
 import com.example.rickymorty.model.dataClass.*
 
 @Database(entities = [Results::class], version = 1)
-@TypeConverters( OriginCoverter::class,
-    LocationConverter::class,
-    EpisodeConverter::class,
-    StringListConverter::class
-)
+
 abstract class DataBasem : RoomDatabase() {
 
     abstract fun daoPersonajes():Dao

@@ -8,13 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickymorty.R
 import com.example.rickymorty.model.dataClass.Results
+import com.example.rickymorty.model.dataClass.RickandMorty
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.holderimage.view.*
 
 
 class CharacterAdapter(var mAdapterCharacter: MutableList<Results>,var pAdapCharacter: pAdapter): RecyclerView.Adapter<CharacterAdapter.ViewHolderCharacter>() {
 
-   fun updateData(mCharacter:MutableList<Results>?){
+   fun updateData(mCharacter:MutableList<Results>){
         if (mCharacter != null) {
             mAdapterCharacter= mCharacter
         }
@@ -23,12 +24,12 @@ class CharacterAdapter(var mAdapterCharacter: MutableList<Results>,var pAdapChar
 
   inner class ViewHolderCharacter(itemView: View): RecyclerView.ViewHolder(itemView){
 
-        fun mbind(result:Results?) {
-            Picasso.get().load(result?.image?.get(0)).placeholder(R.drawable.ic_launcher_foreground).into(itemView.imageCharacter)
-            itemView.charactername.text=result?.name
-        }
 
+        fun mbind(result:Results) {
 
+                itemView.charactername.text=result.name
+                Picasso.get().load(result.image).placeholder(R.drawable.ic_launcher_background).into(itemView.imageCharacter)
+             }
   }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCharacter {
         return ViewHolderCharacter(LayoutInflater.from(parent.context).inflate(R.layout.fragment_fragmentimage,parent,false))

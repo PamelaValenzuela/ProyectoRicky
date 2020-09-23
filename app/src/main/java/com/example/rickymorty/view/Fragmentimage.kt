@@ -55,7 +55,12 @@ class Fragmentimage : Fragment(), CharacterAdapter.pAdapter{
             }
         })
         rickVM.getRicky().observe(viewLifecycleOwner,{
-            mAdapterfrag.updateData(it as MutableList<Results>)})
+            if(it!=null){
+                mAdapterfrag.updateData(it as MutableList<Results>)
+                Log.d("pame","dentro del if $it")
+            }else{
+            Log.d("pame","parece que llega nulo $it")}
+            })
         myrecycler.adapter=mAdapterfrag
         myrecycler.layoutManager=GridLayoutManager(activity,5)
 
