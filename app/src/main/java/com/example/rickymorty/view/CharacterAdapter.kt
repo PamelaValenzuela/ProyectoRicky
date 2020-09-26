@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.holderimage.view.*
 
 class CharacterAdapter(var mAdapterCharacter: MutableList<Results>,var pAdapCharacter: pAdapter): RecyclerView.Adapter<CharacterAdapter.ViewHolderCharacter>() {
 
-   fun updateData(mCharacter:MutableList<Results>){
+   fun updateData(mCharacter:MutableList<Results>?){
         if (mCharacter != null) {
             mAdapterCharacter= mCharacter
         }
@@ -32,7 +32,7 @@ class CharacterAdapter(var mAdapterCharacter: MutableList<Results>,var pAdapChar
              }
   }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCharacter {
-        return ViewHolderCharacter(LayoutInflater.from(parent.context).inflate(R.layout.fragment_fragmentimage,parent,false))
+        return ViewHolderCharacter(LayoutInflater.from(parent.context).inflate(R.layout.holderimage,parent,false))
     }
 
     override fun onBindViewHolder(holder: ViewHolderCharacter, position: Int) {

@@ -62,7 +62,7 @@ class Fragmentimage : Fragment(), CharacterAdapter.pAdapter{
             Log.d("pame","parece que llega nulo $it")}
             })
         myrecycler.adapter=mAdapterfrag
-        myrecycler.layoutManager=GridLayoutManager(activity,5)
+        myrecycler.layoutManager=GridLayoutManager(activity,2)
 
     }
 
