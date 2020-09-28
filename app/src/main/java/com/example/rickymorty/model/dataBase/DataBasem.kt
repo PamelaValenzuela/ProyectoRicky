@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.rickymorty.model.dataClass.*
 
-@Database(entities = [Results::class], version = 1)
+@Database(entities = [Results::class,Favorite::class], version = 1)
 
 abstract class DataBasem : RoomDatabase() {
 

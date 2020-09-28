@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_fragmentimage.*
 class Fragmentimage : Fragment(), CharacterAdapter.pAdapter{
     private lateinit var rickVM: ViewModelRick
     private lateinit var mAdapterfrag:CharacterAdapter
-    //pagina inicial
+
     var page=1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,12 +80,11 @@ class Fragmentimage : Fragment(), CharacterAdapter.pAdapter{
         fun newInstance() =
             Fragmentimage().apply {
                 arguments = Bundle().apply {
-
                 }
             }
     }
-
-    override fun id(id: Int) {
     // activity?.supportFragmentManager!!.beginTransaction().addToBackStack("popular").replace(R.id.frameLayout,MovieDetailsFragment.newInstance(id)).commit()
+    override fun obtenerid(id: Int) {
+        rickVM.insertfavVM(id)
     }
 }

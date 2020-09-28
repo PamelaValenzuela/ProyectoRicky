@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickymorty.R
 import com.example.rickymorty.model.dataClass.Results
@@ -26,9 +27,15 @@ class CharacterAdapter(var mAdapterCharacter: MutableList<Results>,var pAdapChar
 
 
         fun mbind(result:Results) {
-
-                itemView.charactername.text=result.name
+              //  itemView.charactername.text=result.name
                 Picasso.get().load(result.image).placeholder(R.drawable.ic_launcher_background).into(itemView.imageCharacter)
+//el tomar el itemView, se refiere al conjunto de vistas que componen el viewholder, lo que vuelve clickeable
+            itemView.setOnLongClickListener {
+                pAdapCharacter.obtenerid(result.id!!)//se le envia el id al fragment para que este se la pase al viewmodel y el viewmodel guarde ese id como favorito
+                Toast.makeText(itemView.context," added as favorite",
+                    Toast.LENGTH_SHORT).show()
+                true
+            }
              }
   }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderCharacter {
@@ -43,7 +50,7 @@ class CharacterAdapter(var mAdapterCharacter: MutableList<Results>,var pAdapChar
      return mAdapterCharacter.size
     }
     interface pAdapter{
-        fun id(id:Int)
+        fun obtenerid(id:Int)
 
     }
 

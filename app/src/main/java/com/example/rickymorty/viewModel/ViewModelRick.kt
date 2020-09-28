@@ -3,9 +3,12 @@ package com.example.rickymorty.viewModel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
+import com.example.rickymorty.model.dataClass.Favorite
 import com.example.rickymorty.model.dataClass.Results
 import com.example.rickymorty.model.dataClass.RickandMorty
 import com.example.rickymorty.model.repository.RepositoryRick
+import kotlinx.coroutines.launch
 
 class ViewModelRick(application: Application): AndroidViewModel(application) {
 
@@ -20,20 +23,11 @@ class ViewModelRick(application: Application): AndroidViewModel(application) {
         return mRepositoryVM.getPersonajesFromDB()
     }
 
+        fun insertfavVM(id: Int) {
+        viewModelScope.launch {
+            mRepositoryVM.getFavoriteRepo(id)
+        }
 
+ }
 
-
-
-    /*MOVIE FAVORITE
-
-    fun getAllFavoriteMoviesFromDB(): LiveData<List<MovieFavorite>> {
-        return repository.getFavoriteMovies()
-    }
-
-    fun saveFavoriteById(id: Int){
-        return repository.saveFavoriteById(id)
-    }
-    fun deleteFavMovie(id:Int){
-        repository.deleteFavoriteMovieById(id)
-    }*/
 }

@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import com.example.rickymorty.model.dataBase.DataBasem
+import com.example.rickymorty.model.dataClass.Favorite
 import com.example.rickymorty.model.dataClass.Results
 import com.example.rickymorty.model.dataClass.RickandMorty
 import com.example.rickymorty.model.retrofit.RetrofitClient
@@ -44,4 +45,11 @@ class RepositoryRick(context: Context) {
     fun getPersonajesFromDB(): LiveData<List<Results>> {
         return dao.getAllPersonajes()
     }
+
+    suspend fun getFavoriteRepo(id:Int){
+         val obtener =dao.getfavorite(id)
+        val setearfavoritos= Favorite(obtener.id,obtener.status,obtener.species,obtener.name,obtener.image)
+        dao.insertfavorite(setearfavoritos)
+    }
+
 }

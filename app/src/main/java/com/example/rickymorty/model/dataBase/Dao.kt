@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.rickymorty.model.dataClass.Favorite
 import com.example.rickymorty.model.dataClass.Results
 import com.example.rickymorty.model.dataClass.RickandMorty
 @Dao
@@ -16,4 +17,17 @@ interface Dao {
     //cuando agregas livedata no se requiere suspend
     @Query("SELECT * FROM tableresults" )
     fun getAllPersonajes(): LiveData<List<Results>>
+
+    // para favoritos
+
+    @Query("SELECT * FROM tableresults where id=:idfavorite" )
+    fun getfavorite(idfavorite: Int): Results
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertfavorite(mFavorite: Favorite)
+
+    @Query("SELECT * FROM tableFavorite" )
+    fun getallfavorite(): LiveData<List<Favorite>>
+
+
 }
