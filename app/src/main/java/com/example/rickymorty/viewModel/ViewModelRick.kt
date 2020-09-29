@@ -24,10 +24,7 @@ class ViewModelRick(application: Application): AndroidViewModel(application) {
     }
 
         fun insertfavVM(id: Int) {
-        viewModelScope.launch {
             mRepositoryVM.saveFavoriteRepo(id)
-        }
-
 
     }
         fun getallVMrepo(): LiveData<List<Favorite>>{
@@ -35,13 +32,6 @@ class ViewModelRick(application: Application): AndroidViewModel(application) {
          }
 
          fun deleteFavMovie(id:Int){
-             viewModelScope.launch {
                  mRepositoryVM.deleteFavoriterepo(id)
-             }
-
-
-
         }
-
-
 }

@@ -9,9 +9,9 @@
 
     <TextView
         android:id="@+id/titulobienvenida"
-        android:layout_width="415dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="26dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="Rick and Morty"
         app:layout_constraintBottom_toTopOf="@+id/fragmentmain"
@@ -23,8 +23,8 @@
     <FrameLayout
         android:id="@+id/fragmentmain"
         android:layout_width="404dp"
-        android:layout_height="582dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="500dp"
+        android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonfavoritos"
         app:layout_constraintEnd_toStartOf="@+id/buttonfavoritos"
         app:layout_constraintHorizontal_bias="0.0"
@@ -35,10 +35,12 @@
         android:id="@+id/buttonfavoritos"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="35dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="8dp"
         android:text="Favoritos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragmentmain" />
 

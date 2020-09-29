@@ -46,11 +46,12 @@ class RepositoryRick(context: Context) {
         return dao.getAllPersonajes()
     }
 
-    suspend fun saveFavoriteRepo(id:Int){
-
-            val obtener =dao.getDBfavorite(id)
-            val setearfavoritos= Favorite(obtener.id,obtener.status,obtener.species,obtener.name,obtener.image)
-            dao.insertfavorite(setearfavoritos)
+   fun saveFavoriteRepo(id:Int){
+           CoroutineScope(IO).launch {
+               val obtener =dao.getDBfavorite(id)
+               val setearfavoritos= Favorite(obtener.id,obtener.status,obtener.species,obtener.name,obtener.image)
+               dao.insertfavorite(setearfavoritos)
+           }
         }
 
 
@@ -59,9 +60,13 @@ class RepositoryRick(context: Context) {
     }
 
 
-    suspend fun deleteFavoriterepo(id:Int){
-        //la que esta en cache en movie_favorite_table, se elimina por id. para eso tengo que obtener el id del elemento swipeado desde el adapter
-                    val favodeleterepo=dao.getCachedFavoriteiddelete(id)
-                dao.deleteFavoriteobjeto(favodeleterepo)}
+   fun deleteFavoriterepo(id:Int){
+       CoroutineScope(IO).launch {
+           val favodeleterepo=dao.getCachedFavoriteiddelete(id)
+           dao.deleteFavoriteobjeto(favodeleterepo)}
+       //la que esta en cache en movie_favorite_table, se elimina por id. para eso tengo que obtener el id del elemento swipeado desde el adapter
+       }
+
+
 }
 
