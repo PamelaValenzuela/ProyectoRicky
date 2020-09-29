@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_favorite.*
 
 var page=1
 
-class FavoriteFragment : Fragment(), FavoriteAdapter.Adapteridfavorite {
+class FavoriteFragment : Fragment(){
     private lateinit var mFavVM:ViewModelRick
     private lateinit var mAdapterfav: FavoriteAdapter
 
@@ -58,12 +58,6 @@ class FavoriteFragment : Fragment(), FavoriteAdapter.Adapteridfavorite {
                     }
                 }
         }
-
-    override fun idFromLonglickfavorite(id: Int) {
-        mFavVM.deleteFav(id)
-    }
-
-
 
 }
 

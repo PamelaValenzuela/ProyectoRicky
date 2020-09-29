@@ -31,19 +31,18 @@ class FavoriteAdapter(): RecyclerView.Adapter<FavoriteAdapter.ViewHolderFavorite
 
 
     inner class ViewHolderFavorite(item : View):RecyclerView.ViewHolder(item){
+
         fun mbind(result: Favorite) {
             itemView.respuestanombre.text=result.nombre
             itemView.respStatus.text=result.status
             itemView.respspecies.text=result.species
             Picasso.get().load(result.image).placeholder(R.drawable.ic_launcher_background).into(itemView.imagefavorite)
 
-            itemView.setOnLongClickListener {
-                mAdapinterfaceobj.idFromLonglickfavorite(result.id!!)
-
-                true
+            itemView.setOnClickListener {
+               //no se como rayos borrar
             }
 
-        }
+            }
 
 
     }
