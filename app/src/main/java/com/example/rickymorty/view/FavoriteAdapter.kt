@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickymorty.R
 import com.example.rickymorty.model.dataClass.Favorite
-import com.example.rickymorty.model.dataClass.Results
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.favoriteviewholder.view.*
-
+//ar mAdapinterfaceobj: Adapteridfavorite
 class FavoriteAdapter(): RecyclerView.Adapter<FavoriteAdapter.ViewHolderFavorite>(){
     private var mfavset:MutableList<Favorite> = mutableListOf()
+    lateinit var mAdapinterfaceobj: Adapteridfavorite
 
     fun updateData(mFavoriteupdate:MutableList<Favorite>?){
         if (mFavoriteupdate!= null) {
@@ -36,6 +36,13 @@ class FavoriteAdapter(): RecyclerView.Adapter<FavoriteAdapter.ViewHolderFavorite
             itemView.respStatus.text=result.status
             itemView.respspecies.text=result.species
             Picasso.get().load(result.image).placeholder(R.drawable.ic_launcher_background).into(itemView.imagefavorite)
+
+            itemView.setOnLongClickListener {
+                mAdapinterfaceobj.idFromLonglickfavorite(result.id!!)
+
+                true
+            }
+
         }
 
 
@@ -47,9 +54,15 @@ class FavoriteAdapter(): RecyclerView.Adapter<FavoriteAdapter.ViewHolderFavorite
 
     override fun onBindViewHolder(holder: ViewHolderFavorite, position: Int) {
        holder.mbind(mfavset[position])
+
     }
 
     override fun getItemCount(): Int {
     return mfavset.size
+    }
+
+    interface Adapteridfavorite{
+        fun idFromLonglickfavorite(id: Int)
+
     }
 }

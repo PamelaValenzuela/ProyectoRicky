@@ -31,7 +31,7 @@ class ViewModelRick(application: Application): AndroidViewModel(application) {
         return  mRepositoryVM.getAllFavDao()
          }
 
-         fun deleteFavMovie(id:Int){
+         fun deleteFav(id:Int){
                  mRepositoryVM.deleteFavoriterepo(id)
         }
 }

@@ -88,4 +88,6 @@ class Fragmentimage : Fragment(), CharacterAdapter.pAdapter{
     override fun idFromLonglick(id: Int) {
         rickVM.insertfavVM(id)
     }
+
+
 }
