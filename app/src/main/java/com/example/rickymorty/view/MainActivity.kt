@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.rickymorty.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,8 +12,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         initializeFragmentimage()
+
+        buttonfavoritos.setOnClickListener {
+            initializeFragmentfav(FavoriteFragment.newInstance(),"Volver")
+        }
     }
     fun initializeFragmentimage(){
-        supportFragmentManager.beginTransaction().add(R.id.fragmentmain,Fragmentimage.newInstance()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentmain,Fragmentimage.newInstance()).commit()
     }
+    fun initializeFragmentfav(mFragment: Fragment, backStackName: String){
+    supportFragmentManager.beginTransaction().addToBackStack(backStackName).replace(R.id.fragmentmain,mFragment).commit()}
 }

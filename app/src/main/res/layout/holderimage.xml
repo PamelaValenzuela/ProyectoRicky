@@ -34,6 +34,15 @@
             android:text="titulo"
             android:ellipsize="end"/>
 
+        <ImageView
+            android:id="@+id/corazonfavorite"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/corazon"
+            android:visibility="gone"
+            />
+
 
 
     </LinearLayout>

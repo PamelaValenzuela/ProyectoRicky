@@ -1,10 +1,8 @@
 package com.example.rickymorty.model.dataBase
 
 import androidx.lifecycle.LiveData
+import androidx.room.*
 import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
 import com.example.rickymorty.model.dataClass.Favorite
 import com.example.rickymorty.model.dataClass.Results
 import com.example.rickymorty.model.dataClass.RickandMorty
@@ -21,13 +19,19 @@ interface Dao {
     // para favoritos
 
     @Query("SELECT * FROM tableresults where id=:idfavorite" )
-    fun getfavorite(idfavorite: Int): Results
+    fun getDBfavorite(idfavorite: Int): Results
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertfavorite(mFavorite: Favorite)
 
     @Query("SELECT * FROM tableFavorite" )
     fun getallfavorite(): LiveData<List<Favorite>>
+
+    @Query("SELECT * FROM tableFavorite WHERE id =:idfavorite")
+    fun getCachedFavoriteiddelete(idfavorite: Int):Favorite
+
+    @Delete
+    suspend fun deleteFavoriteobjeto(favDeleted:Favorite)
 
 
 }

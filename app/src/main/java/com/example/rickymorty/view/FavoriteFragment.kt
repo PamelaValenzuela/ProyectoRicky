@@ -1,26 +1,36 @@
 package com.example.rickymorty.view
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.core.widget.NestedScrollView
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rickymorty.R
+import com.example.rickymorty.model.dataClass.Favorite
+import com.example.rickymorty.model.dataClass.Results
+import com.example.rickymorty.viewModel.ViewModelRick
+import kotlinx.android.synthetic.main.fragment_favorite.*
+import kotlinx.android.synthetic.main.fragment_fragmentimage.*
 
+private lateinit var mFavVM:ViewModelRick
+private lateinit var mAdapterfav: FavoriteAdapter
+var page=1
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class FavoriteFragment : Fragment() {
 
-class FavoriteFragment : Fragment(), {
-
-    private var param1: String? = null
-    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            mFavVM = ViewModelProvider(activity!!).get(ViewModelRick::class.java)
+            mAdapterfav = FavoriteAdapter()
         }
     }
 
@@ -32,16 +42,32 @@ class FavoriteFragment : Fragment(), {
         return inflater.inflate(R.layout.fragment_favorite, container, false)
     }
 
-    companion object {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mFavVM.getallVMrepo()
+        mFavVM.getallVMrepo().observe(viewLifecycleOwner, {
+            mAdapterfav.updateData(it as MutableList<Favorite>?)
+        })
+
+        recyclerfav.adapter = mAdapterfav
+        recyclerfav.layoutManager = LinearLayoutManager(activity)}
+
+        companion object {
 
 
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FavoriteFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+            @JvmStatic
+            fun newInstance() =
+                FavoriteFragment().apply {
+                    arguments = Bundle().apply {
+
+                    }
                 }
-            }
+        }
     }
-}
+
+
+
+
+
+
+

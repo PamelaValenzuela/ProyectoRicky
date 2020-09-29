@@ -10,8 +10,8 @@ import com.example.rickymorty.model.dataClass.Results
 import com.example.rickymorty.model.dataClass.RickandMorty
 import com.example.rickymorty.model.retrofit.RetrofitClient
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -46,10 +46,22 @@ class RepositoryRick(context: Context) {
         return dao.getAllPersonajes()
     }
 
-    suspend fun getFavoriteRepo(id:Int){
-         val obtener =dao.getfavorite(id)
-        val setearfavoritos= Favorite(obtener.id,obtener.status,obtener.species,obtener.name,obtener.image)
-        dao.insertfavorite(setearfavoritos)
+    suspend fun saveFavoriteRepo(id:Int){
+
+            val obtener =dao.getDBfavorite(id)
+            val setearfavoritos= Favorite(obtener.id,obtener.status,obtener.species,obtener.name,obtener.image)
+            dao.insertfavorite(setearfavoritos)
+        }
+
+
+    fun getAllFavDao(): LiveData<List<Favorite>>{
+        return  dao.getallfavorite()
     }
 
+
+    suspend fun deleteFavoriterepo(id:Int){
+        //la que esta en cache en movie_favorite_table, se elimina por id. para eso tengo que obtener el id del elemento swipeado desde el adapter
+                    val favodeleterepo=dao.getCachedFavoriteiddelete(id)
+                dao.deleteFavoriteobjeto(favodeleterepo)}
 }
+

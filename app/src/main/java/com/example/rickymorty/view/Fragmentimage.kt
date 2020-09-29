@@ -64,6 +64,7 @@ class Fragmentimage : Fragment(), CharacterAdapter.pAdapter{
         myrecycler.adapter=mAdapterfrag
         myrecycler.layoutManager=GridLayoutManager(activity,2)
 
+
     }
 
     companion object {
@@ -83,8 +84,8 @@ class Fragmentimage : Fragment(), CharacterAdapter.pAdapter{
                 }
             }
     }
-    // activity?.supportFragmentManager!!.beginTransaction().addToBackStack("popular").replace(R.id.frameLayout,MovieDetailsFragment.newInstance(id)).commit()
-    override fun obtenerid(id: Int) {
+
+    override fun idFromLonglick(id: Int) {
         rickVM.insertfavVM(id)
     }
 }
